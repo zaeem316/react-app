@@ -13,7 +13,8 @@ function App() {
     let resp = await fetch(url, {
       method: 'POST',
       body: JSON.stringify({ query: `car` }),
-      mode: 'no-cors',
+      // mode: 'no-cors',
+
       headers: { 'Content-Type': 'application/json' },
     })
     let x = resp
