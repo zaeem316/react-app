@@ -7,25 +7,19 @@ function App() {
   const [keyword, setKeyword] = useState('')
   const [images, setImages] = useState([]);
 
-  function getImages() {
+  async function getImages() {
+    const url = 'https://serverless-api.zaeem316.workers.dev';
 
-    axios.post(`https://serverless-api.zaeem316.workers.dev`, { query: `car` }, {mode: 'no-cors'})
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      })
-
-    // fetch('https://serverless-api.zaeem316.workers.dev', {
-    //   method: 'POST', // or 'PUT'
-    //   mode: 'no-cors',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({ query: `car` }),
-    // })
-    // .then(data => data[body].json())
-    // .then(a => console.log(a))
+    let resp = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify({ query: `car` }),
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+    })
+    let x = resp
+    console.log(x)
+      // .then(data => data[body].json())
+      // .then(a => console.log(a))
     // const imagesArray = await resp.json();
     // const imagesArray = resp.body;
     // console.log(imagesArray)
