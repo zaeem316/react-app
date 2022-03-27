@@ -14,7 +14,7 @@ function App() {
       },
       body: JSON.stringify({ query: `${keyword}` }),
     })
-    setImages(data)
+    setImages(...data)
   }
 
   return (
@@ -24,7 +24,7 @@ function App() {
           <div className="input-group mb-3">
             <input type="text" className="form-control" placeholder="Search Images" onChange={(e)=> setKeyword(e.target.value)} />
             <div className="input-group-append">
-              <button className="btn btn-outline-secondary" type="button" onClick={() => { getImages() }}>
+              <button className="btn btn-outline-success" type="button" onClick={() => { getImages() }}>
                 Button
               </button>
             </div>
