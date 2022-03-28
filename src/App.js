@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import './App.css';
 
 
@@ -12,19 +11,12 @@ function App() {
 
     let resp = await fetch(url, {
       method: 'POST',
-      body: JSON.stringify({ query: `car` }),
+      body: JSON.stringify({ query: `${keyword}` }),
       // mode: 'no-cors',
-
       headers: { 'Content-Type': 'application/json' },
     })
-    let x = resp
-    console.log(x)
-      // .then(data => data[body].json())
-      // .then(a => console.log(a))
-    // const imagesArray = await resp.json();
-    // const imagesArray = resp.body;
-    // console.log(imagesArray)
-    // setImages(data)
+    let imagesArray = await resp.json()
+    setImages(imagesArray)
   }
 
   return (
@@ -34,7 +26,7 @@ function App() {
           <div className="input-group mb-3">
             <input type="text" className="form-control" placeholder="Search Images" onChange={(e) => setKeyword(e.target.value)} />
             <div className="input-group-append">
-              <button className="btn btn-outline-success" type="button" onClick={() => { getImages() }}>
+              <button className="btn btn-outline-success" type="button" disabled={keyword == '' ? true : false} onClick={() => { getImages() }}>
                 Button
               </button>
             </div>
@@ -46,8 +38,8 @@ function App() {
 
         {images.map((data, index) => {
           return (
-            <div>
-              <img className='pt-4' src={data.image} key={index} />
+            <div key={index}>
+              <img className='pt-4' src={data.image} />
             </div>
           )
         })}
